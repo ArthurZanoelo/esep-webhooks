@@ -6,12 +6,14 @@ using System.Text;
 using Amazon.Lambda.Core;
 using Newtonsoft.Json;
 
+
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
 namespace EsepWebhook;
 
 public class Function
 {
+
     public string FunctionHandler(object input, ILambdaContext context)
     {
         context.Logger.LogLine($"Received: {input}");
@@ -31,4 +33,5 @@ public class Function
         using var reader = new StreamReader(response.Content.ReadAsStream());
         return reader.ReadToEnd();
     }
+
 }
